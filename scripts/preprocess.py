@@ -1,14 +1,3 @@
-#!/usr/bin/env python3
-"""
-scripts/preprocess.py
-
-Étapes 2 à 5 de la branche data-pipeline :
- 2. Analyse des types (numériques, catégorielles)
- 3. Traitement des valeurs manquantes + encodage catégoriel
- 4. Standardisation numérique
- 5. Sauvegarde full & reduced
-"""
-
 import argparse
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
