@@ -1,0 +1,5 @@
+outs:
+- md5: 2253b003e0689925479116296b1f6fb1
+  size: 90229
+  hash: md5
+  path: reduced.parquet

@@ -1,0 +1,20 @@
+# params.yaml
+
+# Configuration MLflow
+mlflow:
+  tracking_uri: "http://3.222.185.201:5000"  # URI du serveur MLflow (modifiable via env var si besoin)
+  experiment_name: "Projet MLOps - Churn Prediction"
+
+# Configuration des données
+data:
+  path: "data/processed/full.parquet"  # Chemin du fichier Parquet (local ou via DVC)
+  remote: "s3remote"  # Nom du remote DVC
+
+# Hyperparamètres (facultatif, pour train.py)
+model:
+  logistic_regression:
+    C: [0.1, 1.0, 10.0]
+  random_forest:
+    n_estimators: [50, 100, 200]
+  test_size: 0.2
+  random_state: 42

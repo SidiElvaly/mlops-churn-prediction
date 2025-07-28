@@ -1,0 +1,8 @@
+# Ignorer toutes les données brutes et traitées
+/data/raw/*
+/data/processed/*
+
+# Mais ne pas ignorer les fichiers .dvc
+!/data/raw/*.dvc
+!/data/processed/*.dvc
+
