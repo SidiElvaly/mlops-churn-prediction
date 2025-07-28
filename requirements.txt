@@ -1,0 +1,10 @@
+mlflow
+scikit-learn
+pandas
+matplotlib
+seaborn
+dvc
+dvc-s3
+boto3
+psycopg2-binary
+pyarrow
