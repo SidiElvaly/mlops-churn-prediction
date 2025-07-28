@@ -6,20 +6,25 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, roc_curve, 
 import matplotlib.pyplot as plt
 import seaborn as sns
 import dvc.api
+import yaml
+
+# Charger les paramètres depuis params.yaml
+with open("params.yaml", "r") as file:
+    params = yaml.safe_load(file)
 
 # Configurer MLflow
-mlflow.set_tracking_uri("http://3.222.185.201:5000")  # Remplacer par l'IP EC2
-mlflow.set_experiment("Projet MLOps - Churn Prediction")
+mlflow.set_tracking_uri(params["mlflow"]["tracking_uri"])
+mlflow.set_experiment(params["mlflow"]["experiment_name"])
 
 # Charger les données versionnées par DVC
-data_path = dvc.api.get_url('data/processed/full.parquet', remote='s3remote')
+data_path = dvc.api.get_url(params["data"]["path"], remote=params["data"]["remote"])
 df = pd.read_parquet(data_path)
 X = df.drop(['customerID', 'Churn'], axis=1)
 y = df['Churn']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Récupérer les runs
-runs = mlflow.search_runs(experiment_names=["Projet MLOps - Churn Prediction"])
+runs = mlflow.search_runs(experiment_names=[params["mlflow"]["experiment_name"]])
 best_f1 = 0
 best_run_id = None
 
