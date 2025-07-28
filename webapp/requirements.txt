@@ -1,0 +1,5 @@
+flask
+pandas
+mlflow
+boto3
+scikit-learn

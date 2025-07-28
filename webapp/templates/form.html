@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse de Churn - ChurnShield</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <!-- Sidebar (inchangée) -->
+        <aside class="form-sidebar">
+            <div class="logo">
+                <a href="/"><i class="fas fa-shield-alt"></i> ChurnShield</a>
+            </div>
+            <ol class="stepper">
+                <li class="step-item active" data-step="1"><span class="step-number">1</span><span class="step-title">Infos Compte</span></li>
+                <li class="step-item" data-step="2"><span class="step-number">2</span><span class="step-title">Infos Client</span></li>
+                <li class="step-item" data-step="3"><span class="step-number">3</span><span class="step-title">Services</span></li>
+            </ol>
+        </aside>
+
+        <!-- Contenu du formulaire (inchangé) -->
+        <main class="form-content">
+            <form id="churn-form">
+                <header class="form-header">
+                    <h1 id="form-title">Informations sur le Compte</h1>
+                    <p id="form-subtitle">Commencez par les détails du contrat et de la facturation.</p>
+                </header>
+                <!-- Étape 1 -->
+                <div class="form-step active"><div class="form-grid">
+                    <div class="form-group"><label for="tenure">Ancienneté (mois)</label><input type="number" id="tenure" name="tenure" required min="0" placeholder="Ex: 24"></div>
+                    <div class="form-group"><label for="Contract">Type de Contrat</label><select id="Contract" name="Contract" required><option value="Month-to-month">Mois par mois</option><option value="One year">Un an</option><option value="Two year">Deux ans</option></select></div>
+                    <div class="form-group"><label for="PaymentMethod">Méthode de Paiement</label><select id="PaymentMethod" name="PaymentMethod" required><option value="Electronic check">Chèque électronique</option><option value="Mailed check">Chèque par courrier</option><option value="Bank transfer (automatic)">Virement auto</option><option value="Credit card (automatic)">Carte de crédit auto</option></select></div>
+                    <div class="form-group"><label for="PaperlessBilling">Facturation Électronique</label><select id="PaperlessBilling" name="PaperlessBilling" required><option value="Yes">Oui</option><option value="No">Non</option></select></div>
+                    <div class="form-group"><label for="MonthlyCharges">Frais Mensuels (€)</label><input type="number" step="0.01" id="MonthlyCharges" name="MonthlyCharges" required min="0" placeholder="Ex: 85.50"></div>
+                    <div class="form-group"><label for="TotalCharges">Frais Totaux (€)</label><input type="number" step="0.01" id="TotalCharges" name="TotalCharges" required min="0" placeholder="Ex: 2500.50"></div>
+                </div></div>
+                <!-- Étape 2 -->
+                <div class="form-step"><div class="form-grid">
+                    <div class="form-group"><label for="gender">Genre</label><select id="gender" name="gender" required><option value="Female">Féminin</option><option value="Male">Masculin</option></select></div>
+                    <div class="form-group"><label for="SeniorCitizen">Senior (+65 ans)</label><select id="SeniorCitizen" name="SeniorCitizen" required><option value="0">Non</option><option value="1">Oui</option></select></div>
+                    <div class="form-group"><label for="Partner">Partenaire</label><select id="Partner" name="Partner" required><option value="Yes">Oui</option><option value="No">Non</option></select></div>
+                    <div class="form-group"><label for="Dependents">Personnes à charge</label><select id="Dependents" name="Dependents" required><option value="Yes">Oui</option><option value="No">Non</option></select></div>
+                </div></div>
+                <!-- Étape 3 -->
+                <div class="form-step"><div class="form-grid large-grid">
+                    <div class="form-group"><label for="PhoneService">Service Téléphonique</label><select id="PhoneService" name="PhoneService" required><option value="Yes">Oui</option><option value="No">Non</option></select></div>
+                    <div class="form-group"><label for="MultipleLines">Lignes Multiples</label><select id="MultipleLines" name="MultipleLines" required><option value="Yes">Oui</option><option value="No">Non</option><option value="No phone service">Pas de service</option></select></div>
+                    <div class="form-group"><label for="InternetService">Service Internet</label><select id="InternetService" name="InternetService" required><option value="DSL">DSL</option><option value="Fiber optic">Fibre</option><option value="No">Non</option></select></div>
+                    <div class="form-group"><label for="OnlineSecurity">Sécurité en Ligne</label><select id="OnlineSecurity" name="OnlineSecurity" required><option value="Yes">Oui</option><option value="No">Non</option><option value="No internet service">Pas de service</option></select></div>
+                    <div class="form-group"><label for="OnlineBackup">Sauvegarde en Ligne</label><select id="OnlineBackup" name="OnlineBackup" required><option value="Yes">Oui</option><option value="No">Non</option><option value="No internet service">Pas de service</option></select></div>
+                    <div class="form-group"><label for="DeviceProtection">Protection Appareils</label><select id="DeviceProtection" name="DeviceProtection" required><option value="Yes">Oui</option><option value="No">Non</option><option value="No internet service">Pas de service</option></select></div>
+                    <div class="form-group"><label for="TechSupport">Support Technique</label><select id="TechSupport" name="TechSupport" required><option value="Yes">Oui</option><option value="No">Non</option><option value="No internet service">Pas de service</option></select></div>
+                    <div class="form-group"><label for="StreamingTV">Streaming TV</label><select id="StreamingTV" name="StreamingTV" required><option value="Yes">Oui</option><option value="No">Non</option><option value="No internet service">Pas de service</option></select></div>
+                    <div class="form-group"><label for="StreamingMovies">Streaming Films</label><select id="StreamingMovies" name="StreamingMovies" required><option value="Yes">Oui</option><option value="No">Non</option><option value="No internet service">Pas de service</option></select></div>
+                </div></div>
+                <!-- Navigation (inchangée) -->
+                <div class="form-navigation">
+                    <button type="button" id="prev-btn" class="btn btn-secondary">Précédent</button>
+                    <button type="button" id="next-btn" class="btn btn-primary">Suivant <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Fenêtre Modale (MODIFIÉE : sans la confiance) -->
+    <div id="result-modal-overlay" class="modal-overlay">
+        <div id="result-modal" class="modal-content">
+            <div id="modal-icon" class="modal-icon"></div>
+            <h2 id="modal-title" class="modal-title"></h2>
+            <!-- Le bloc de confiance a été supprimé -->
+            <p id="modal-status" class="modal-status"></p>
+            <button id="modal-close-btn" class="btn btn-primary">Fermer l'analyse</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
