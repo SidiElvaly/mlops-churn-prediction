@@ -2,7 +2,7 @@
 
 # Configuration MLflow
 mlflow:
-  tracking_uri: "http://3.222.185.201:5000"  # URI du serveur MLflow (modifiable via env var si besoin)
+  tracking_uri: "http://3.239.172.80:5000"  # URI du serveur MLflow (modifiable via env var si besoin)
   experiment_name: "Projet MLOps - Churn Prediction"
 
 # Configuration des données
